@@ -1,0 +1,25 @@
+{
+  "name": "ember2-coffeescript-conversion-toolkit",
+  "version": "1.0.0",
+  "description": "Tooling to assist in Ember upgrades, including coffeescript conversions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linearza/ember2-coffeescript-conversion-toolkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linearza/ember2-coffeescript-conversion-toolkit/issues"
+  },
+  "homepage": "https://github.com/linearza/ember2-coffeescript-conversion-toolkit#readme",
+  "dependencies": {
+    "decaffeinate": "^8.1.4",
+    "ember-3x-codemods": "^1.12.7",
+    "ember-v2-codemods": "^0.2.0",
+    "lil-codemods": "^0.2.7"
+  }
+}
