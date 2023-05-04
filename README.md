@@ -2,8 +2,6 @@
 
 Automates decaffeination and applies basic codemods to emulate an ember 2.18 state - in preparation for further upgrades.
 
-This is similar to using 
-
 ### Uses
 * https://github.com/decaffeinate/decaffeinate
 * https://github.com/jmdejno/lil-codemods
@@ -11,9 +9,9 @@ This is similar to using
 * https://github.com/ember-codemods/ember-3x-codemods
 
 ### Workflow
-1. decaffeinate path/to/file.coffee --optional-chaining
-2. ember-3x-codemods fpe-observes path/to/file.js
-3. ember-v2-codemods legacy-computed-codemod path/to/file.js
+1. decaffeinate
+2. ember-v2-codemods legacy-observer-codemod
+3. ember-v2-codemods legacy-computed-codemod
 4. lil-codemods run get 
 5. lil-codemods run set 
 6. lil-codemods run get-properties 
@@ -21,6 +19,7 @@ This is similar to using
 8. lil-codemods run unused-imports 
 
 Planned:
+- Delete coffee file
 - Sort class
 - Prettify
 
