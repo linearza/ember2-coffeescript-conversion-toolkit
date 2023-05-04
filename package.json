@@ -1,9 +1,10 @@
 {
-  "name": "ember2-coffeescript-conversion-toolkit",
+  "name": "e2cct",
   "version": "1.0.0",
-  "description": "Tooling to assist in Ember upgrades, including coffeescript conversions",
+  "description": "ember2-coffeescript-conversion-toolkit - Tooling to assist in Ember upgrades, including coffeescript conversions",
   "main": "index.js",
   "scripts": {
+    "decaf": "decaffeinate '${npm_config_path}' --optional-chaining",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,3 +24,5 @@
     "lil-codemods": "^0.2.7"
   }
 }
+
+
