@@ -2,34 +2,41 @@
 
 Automates decaffeination and applies basic codemods to emulate an ember 2.18 state - in preparation for further upgrades.
 
+Some of the https://github.com/linearza/ember-v2-codemods codemods have been inspired by https://github.com/jmdejno/lil-codemods and https://github.com/ember-codemods/ember-3x-codemods 
+The main differences are around how imports are handled, and slight improvements like the lack of user prompt inputs, to make the process more fluid.
+
 ## Install
 ```
-yarn global add e2cct
+npm install e2cct -g
 ```
 
 ## Usage
 ```
-e2cct decaf --path=path/to/my/file.coffee
+e2cct path/to/my/file.coffee
 ```
-
 
 ### Dependencies
 * https://github.com/decaffeinate/decaffeinate
-* https://github.com/jmdejno/lil-codemods
 * https://github.com/linearza/ember-v2-codemods
 * https://github.com/ember-codemods/ember-3x-codemods
 
 ### Workflow
-1. decaffeinate
-2. ember-v2-codemods legacy-observer-codemod
-3. ember-v2-codemods legacy-computed-codemod
-4. lil-codemods run get 
-5. lil-codemods run set 
-6. lil-codemods run get-properties 
-7. lil-codemods run get-properties 
-8. lil-codemods run unused-imports 
+1. description: 'Decaffeinating the file...',
+2. description: 'Converting .property() to computed()...',
+3. description: 'Converting .observes() to observer()...',
+4. description: 'Converting this.get to get(this...',
+5. description: 'Converting this.set to set(this...',
+6. description: 'Converting this.setProperties to setProperties(this...',
+7. description: 'Converting this.getProperties to getProperties(this...',
 
 Planned:
+
+https://github.com/ember-codemods/ember-data-codemod (if model)
+https://github.com/ember-codemods/ember-modules-codemod
+https://github.com/ember-codemods/ember-computed-getter-codemod
+
+- Merged imports
+- Unused imports
 - Delete coffee file
 - Sort class
 - Prettify
