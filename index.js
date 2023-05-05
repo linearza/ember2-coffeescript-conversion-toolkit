@@ -17,13 +17,54 @@ if (!filePath) {
 //   */
 // ];
 
+function getBinaryFromBin(name){
+  return path.join(__dirname, 'node_modules', '.bin', name)
+}
+
+function getBinaryFromSource(name){
+  return path.join(require.resolve('decaffeinate'), `../../bin/${name}`)
+}
+
 
 const path = require('path');
 
-const decaffeinateBinary = path.join(require.resolve('decaffeinate'), '../../bin/decaffeinate');
+const dirPath = path.dirname(filePath);
+const extName = path.extname(filePath);
+const baseName = path.basename(filePath, extName);
+const jsFilePath = `${process.cwd()}/${dirPath}/${baseName}.js`
+
+// console.log('>>>')
+// console.log(filePath)
+// console.log(dirPath)
+// console.log(extName)
+// console.log(baseName)
+// console.log(jsFilePath)
 
 const dependencies = [
-  { name: 'decaffeinate', command: decaffeinateBinary, args: [filePath, '--optional-chaining'] },
+  { 
+    description: 'Decaffeinating the file...',
+    name: getBinaryFromBin('decaffeinate'),
+    command: filePath,
+    args: ['--optional-chaining'] 
+  },
+  { 
+    description: 'Converting .observes() to observer()...',
+    name: getBinaryFromBin('ember-3x-codemods'), 
+    command: 'fpe-observes',
+    args: [jsFilePath] 
+  },
+  { 
+    description: 'Converting .property() to computed()...',
+    name: getBinaryFromBin('ember-v2-codemods'), 
+    command: 'legacy-computed-codemod',
+    args: [jsFilePath] 
+  },
+  { 
+    description: 'Converting .observes() to observer()...',
+    name: getBinaryFromBin('ember-v2-codemods'), 
+    command: 'legacy-observer-codemod',
+    args: [jsFilePath] 
+  },
 ];
 
 
@@ -50,14 +91,14 @@ npx lil-codemods run unused-imports
 for (let i = 0; i < dependencies.length; i++) {
   const dependency = dependencies[i];
 
-  try {
-    const result = spawnSync(dependency.name, [dependency.command, ...dependency.args], { stdio: 'inherit' });
+  console.info(`\x1b[33m ${dependency.description} \x1b[0m`);
 
-    if (result.status !== 0) {
-      console.error(`Command failed: ${dependency.name} ${dependency.command} ${dependency.args.join(' ')}`);
-      process.exit(1);
-    }
-  } catch (e) {
-    console.log('>>>', e)
+  const result = spawnSync(dependency.name, [dependency.command, ...dependency.args], { stdio: 'inherit' });
+
+  if (result.status !== 0) {
+    console.error(`Command failed: ${dependency.name} ${dependency.command} ${dependency.args.join(' ')}`);
+    console.error(result);
+    process.exit(1);
+    break
   }
 }
