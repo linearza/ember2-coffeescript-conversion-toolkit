@@ -2,7 +2,18 @@
 
 Automates decaffeination and applies basic codemods to emulate an ember 2.18 state - in preparation for further upgrades.
 
-### Uses
+## Install
+```
+yarn global add e2cct
+```
+
+## Usage
+```
+e2cct decaf --path=path/to/my/file.coffee
+```
+
+
+### Dependencies
 * https://github.com/decaffeinate/decaffeinate
 * https://github.com/jmdejno/lil-codemods
 * https://github.com/linearza/ember-v2-codemods
