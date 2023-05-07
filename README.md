@@ -32,8 +32,10 @@ e2cct path/to/my/file.coffee
 ### Manual workflow
 Once you have run the automated conversion, there are some manual steps required:
 1. Merge any imports depending on the same declarations (potential for automation)
-2. Do logic comparison and check for any flags - feel free to open an issue here if required
-3. Finally, delete the old .coffee file
+2. Prettify
+3. Sort file by categories
+4. Do logic comparison and check for any obvious issues - feel free to open an issue here if you spot something
+5. Finally, delete the old .coffee file
 
 ### Planned improvements
 - Merge imports
