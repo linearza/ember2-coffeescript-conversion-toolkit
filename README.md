@@ -31,10 +31,11 @@ e2cct path/to/my/file.coffee
 
 Planned:
 
-https://github.com/ember-codemods/ember-data-codemod (if model)
+
 https://github.com/ember-codemods/ember-modules-codemod
 https://github.com/ember-codemods/ember-computed-getter-codemod
 
+- Merge imports
 - Unused imports
 - Delete coffee file
 - Sort class

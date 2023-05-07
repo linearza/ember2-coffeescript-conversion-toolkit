@@ -69,6 +69,12 @@ const dependencies = [
     command: 'legacy-getProperties-codemod',
     args: [jsFilePath] 
   },
+  { 
+    description: 'Converting Ember.Component.extend({ to Component.extend({...',
+    name: getBinaryFromBin('ember-modules-codemod'), 
+    command: jsFilePath,
+    args: [] 
+  },
 ];
 
 for (let i = 0; i < dependencies.length; i++) {
