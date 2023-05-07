@@ -35,7 +35,6 @@ https://github.com/ember-codemods/ember-data-codemod (if model)
 https://github.com/ember-codemods/ember-modules-codemod
 https://github.com/ember-codemods/ember-computed-getter-codemod
 
-- Merged imports
 - Unused imports
 - Delete coffee file
 - Sort class

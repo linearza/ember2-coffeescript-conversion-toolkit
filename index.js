@@ -20,16 +20,17 @@ function getBinaryFromSource(name){
 
 const path = require('path');
 
-const dirPath = path.dirname(coffeeFilePath);
-const extName = path.extname(coffeeFilePath);
-const baseName = path.basename(coffeeFilePath, extName);
-const jsFilePath = `${process.cwd()}/${dirPath}/${baseName}.js`
+const absoluteCoffeePath = `${process.cwd()}/${coffeeFilePath}`
+const dirPath = path.dirname(absoluteCoffeePath);
+const extName = path.extname(absoluteCoffeePath);
+const baseName = path.basename(absoluteCoffeePath, extName);
+const jsFilePath = `${dirPath}/${baseName}.js`
 
 const dependencies = [
   { 
     description: 'Decaffeinating the file...',
     name: getBinaryFromBin('decaffeinate'),
-    command: coffeeFilePath,
+    command: absoluteCoffeePath,
     args: ['--optional-chaining'] 
   },
   { 
