@@ -75,6 +75,12 @@ const dependencies = [
     command: jsFilePath,
     args: [] 
   },
+  { 
+    description: 'Converting computed(function() to computed({get()...',
+    name: getBinaryFromBin('ember-computed-getter-codemod'), 
+    command: 'ember-computed-getter-codemod',
+    args: [jsFilePath] 
+  },
 ];
 
 for (let i = 0; i < dependencies.length; i++) {
