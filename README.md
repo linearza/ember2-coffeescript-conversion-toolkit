@@ -1,8 +1,11 @@
 # ember2-coffeescript-conversion-toolkit
 
-Automates decaffeination and applies basic codemods to emulate an ember 2.18 state - in preparation for further upgrades.
+Automates decaffeination and applies basic codemods to emulate an ember 2.x state Ember app - in preparation for further upgrades.
 
-Some of the https://github.com/linearza/ember-v2-codemods codemods have been inspired by https://github.com/jmdejno/lil-codemods and https://github.com/ember-codemods/ember-3x-codemods 
+Some of the https://github.com/linearza/ember-v2-codemods were inspired by:
+* https://github.com/jmdejno/lil-codemods
+* https://github.com/ember-codemods/ember-3x-codemods
+
 The main differences are around how imports are handled, and slight improvements like the lack of user prompt inputs, to make the process more fluid.
 
 ## Install
@@ -28,13 +31,10 @@ e2cct path/to/my/file.coffee
 5. description: 'Converting this.set to set(this...',
 6. description: 'Converting this.setProperties to setProperties(this...',
 7. description: 'Converting this.getProperties to getProperties(this...',
+8. description: 'Converting Ember.Component.extend({ to Component.extend({...'
+9. description: 'Converting computed(function() to computed({get()...'
 
-Planned:
-
-
-https://github.com/ember-codemods/ember-modules-codemod
-https://github.com/ember-codemods/ember-computed-getter-codemod
-
+### Planned improvements
 - Merge imports
 - Unused imports
 - Delete coffee file
