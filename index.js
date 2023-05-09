@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 
 const { spawnSync } = require("child_process");
-const coffeeFilePath = process.argv[2]; // Get the file path from the command line arguments
+const args = process.argv[2];
 
-if (!coffeeFilePath) {
-  console.error("Please provide a file path argument");
+if (!args) {
+  console.error("e2cct: Please provide a file path argument, or run reset/update");
   process.exit(1);
 }
+
+if (['reset', 'update'].includes(args)) {
+  return require(`./${args}.js`);
+}
+
+const coffeeFilePath = args;
 
 function getBinaryFromBin(name) {
   return path.join(__dirname, "node_modules", ".bin", name);
@@ -103,7 +109,7 @@ for (let i = 0; i < dependencies.length; i++) {
   const dependency = dependencies[i];
 
   console.info(
-    `\x1b[33m ${dependency.name}: ${dependency.description} \x1b[0m`
+    `\x1b[94m${dependency.name}: ${dependency.description} \x1b[0m`
   );
 
   const result = spawnSync(
