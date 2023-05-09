@@ -18,11 +18,13 @@ npm install ember2-coffeescript-conversion-toolkit -g
 e2cct path/to/my/file.coffee
 ```
 #### Reset
+Reset ALL git changes on the branch, including the conversion
 ```
 e2cct reset
 ```
 
 #### Update
+Update to the latest version of e2cct
 ```
 e2cct update
 ```
