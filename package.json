@@ -1,6 +1,6 @@
 {
   "name": "ember2-coffeescript-conversion-toolkit",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "ember2-coffeescript-conversion-toolkit - Tooling to assist in Ember upgrades, including coffeescript conversions",
   "main": "index.js",
   "preferGlobal": true,
@@ -8,7 +8,9 @@
     "e2cct": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "reset": "git reset --hard && git clean -f",
+    "update": "npm update -g ember2-coffeescript-conversion-toolkit"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,6 @@
     "ember-3x-codemods": "^1.12.7",
     "ember-computed-getter-codemod": "^1.4.0",
     "ember-modules-codemod": "^0.3.1",
-    "ember-v2-codemods": "^0.6.0"
+    "ember-v2-codemods": "^0.6.1"
   }
 }
