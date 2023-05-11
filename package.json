@@ -8,9 +8,7 @@
     "e2cct": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "reset": "git reset HEAD~ && git reset HEAD~ && git reset --hard && git clean -f",
-    "update": "npm update -g ember2-coffeescript-conversion-toolkit"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
