@@ -1,131 +1,49 @@
 #!/usr/bin/env node
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
 
-const { spawnSync } = require("child_process");
-const args = process.argv[2];
+const argv = yargs(hideBin(process.argv))
+  .command('convert [file]', 'Decaffeinate and codemod a file', (yargs) => {
+    yargs.positional('file', {
+        describe: 'file to convert',
+        default: null
+      })
+    yargs.option('lint', {
+        alias: 'l',
+        describe: 'Lint file post convert'
+      })
+    return yargs
+  }, (argv) => {
+    if (!argv.file) {
+      return console.error('Please provide a file path')
+    }
 
-if (!args) {
-  console.error("e2cct: Please provide a file path argument, or run reset/update");
-  process.exit(1);
-}
+    const script = require(`./commands/convert.js`);
+    script(argv)
+    return argv
+  })
+  .command('lint [file]', 'Lint and fix possible issues', (yargs) => {
+    yargs.positional('file', {
+        describe: 'file to lint',
+        default: null
+      })
+    return yargs
+  }, (argv) => {
+    if (!argv.file) {
+      return console.error('Please provide a file path')
+    }
 
-if (['reset', 'update'].includes(args)) {
-  return require(`./${args}.js`);
-}
+    const script = require(`./commands/lint.js`);
+    script(argv)
+    return argv
+  })
+  .command(require('./commands/update.js'))
+  .command(require('./commands/reset.js'))
+  .help()
+  .parse()
 
-const coffeeFilePath = args;
+// console.log(argv.lint); // true if --reset flag was provided, false otherwise
+// console.log(argv.update); // true if --update flag was provided, false otherwise
+// console.log(argv.file); // the path to the file to update
 
-function getBinaryFromBin(name) {
-  return path.join(__dirname, "node_modules", ".bin", name);
-}
-
-/*
-function getBinaryFromSource(name){
-  return path.join(require.resolve('decaffeinate'), `../../bin/${name}`)
-}
-*/
-
-const path = require("path");
-const dirPath = path.dirname(coffeeFilePath);
-const extName = path.extname(coffeeFilePath);
-const baseName = path.basename(coffeeFilePath, extName);
-
-const absoluteCoffeePath = `${process.cwd()}/${coffeeFilePath}`;
-const absoluteJsFilePath = `${process.cwd()}/${dirPath}/${baseName}.js`;
-
-const dependencies = [
-  {
-    description: "Bulk decaffeinating the file...",
-    name: "bulk-decaffeinate",
-    binary: getBinaryFromBin("bulk-decaffeinate"),
-    command: "convert",
-    args: [`-f`, `${absoluteCoffeePath}`, `--config`, `${__dirname}/bulk-decaffeinate.config.js`],
-  },
-  {
-    description: "Converting .property() to computed()...",
-    name: "legacy-computed-codemod",
-    binary: getBinaryFromBin("ember-v2-codemods"),
-    command: "legacy-computed-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Converting .observes() to observer()...",
-    name: "legacy-observer-codemod",
-    binary: getBinaryFromBin("ember-v2-codemods"),
-    command: "legacy-observer-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Converting this.get to get(this...",
-    name: "legacy-get-codemod",
-    binary: getBinaryFromBin("ember-v2-codemods"),
-    command: "legacy-get-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Converting this.set to set(this...",
-    name: "legacy-set-codemod",
-    binary: getBinaryFromBin("ember-v2-codemods"),
-    command: "legacy-set-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Converting this.setProperties to setProperties(this...",
-    name: "legacy-setProperties-codemod",
-    binary: getBinaryFromBin("ember-v2-codemods"),
-    command: "legacy-setProperties-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Converting this.getProperties to getProperties(this...",
-    name: "legacy-getProperties-codemod",
-    binary: getBinaryFromBin("ember-v2-codemods"),
-    command: "legacy-getProperties-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Converting Ember.Component.extend({ to Component.extend({...",
-    name: "ember-modules-codemod",
-    binary: getBinaryFromBin("ember-modules-codemod"),
-    command: absoluteJsFilePath,
-    args: [],
-  },
-  {
-    description: "Converting computed(function() to computed({get()...",
-    name: "ember-computed-getter-codemod",
-    binary: getBinaryFromBin("ember-computed-getter-codemod"),
-    command: "ember-computed-getter-codemod",
-    args: [absoluteJsFilePath],
-  },
-  {
-    description: "Fixing eslint issues...",
-    name: "eslint",
-    binary: "npx",
-    command: `eslint`,
-    args: [`${absoluteJsFilePath}`, "--fix"],
-  },
-];
-
-for (let i = 0; i < dependencies.length; i++) {
-  const dependency = dependencies[i];
-
-  console.info(
-    `\x1b[94m${dependency.name}: ${dependency.description} \x1b[0m`
-  );
-
-  const result = spawnSync(
-    dependency.binary,
-    [dependency.command, ...dependency.args],
-    { stdio: ["inherit", "inherit", "pipe"] }
-  );
-
-  if (result.status !== 0 && !["eslint"].includes(dependency.command)) {
-    console.error(
-      `Command failed: ${dependency.name}, command: ${
-        dependency.command
-      }, args: ${dependency.args.join(" ")}`
-    );
-    console.error(result.output[2].toString());
-    process.exitCode = 1;
-    break;
-  }
-}
+return

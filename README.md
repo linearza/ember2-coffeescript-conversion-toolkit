@@ -13,22 +13,21 @@ The main differences are around how imports are handled, and slight improvements
 npm install ember2-coffeescript-conversion-toolkit -g
 ```
 ## Commands
-#### Convert
 ```
-e2cct path/to/my/file.coffee
-```
-#### Reset
-Reset ALL git changes on the branch, including the conversion
-```
-e2cct reset
-```
+e2cct [command]
 
-#### Update
-Update to the latest version of e2cct
-```
-e2cct update
-```
+Commands:
+  e2cct convert [file]  Decaffeinate and codemod a file
+  e2cct lint [file]     Lint and fix possible issues
+  e2cct update          Update e2cct to the latest version
+  e2cct reset           Reverts unstaged changes and decaffeinate commits.
+                        Careful!
 
+Options:
+  --version  Show version number                                       [boolean]
+  --help     Show help                                                 [boolean]
+
+```
 
 ### Automated workflow
 1. decaffeinate: Decaffeinating the file...
@@ -40,7 +39,10 @@ e2cct update
 7. legacy-getProperties-codemod: Converting this.getProperties to getProperties(this...
 8. ember-modules-codemod: Converting Ember.Component.extend({ to Component.extend({...
 9. ember-computed-getter-codemod: Converting computed(function() to computed({get()...
-10. eslint: Fixing eslint issues...
+
+#### Linting
+Linting is done separately as final step. Rules are inherited from the project.
+
 
 ### Manual workflow
 Once you have run the automated conversion, there are some manual steps required:
@@ -51,7 +53,6 @@ Once you have run the automated conversion, there are some manual steps required
 5. Finally, delete the old .coffee file
 
 ### Planned improvements
-- Merge imports (beta)
 - Unused imports
 - Delete coffee file
 - Prettify
@@ -61,11 +62,6 @@ Once you have run the automated conversion, there are some manual steps required
 * https://github.com/decaffeinate/decaffeinate
 * https://github.com/linearza/ember-v2-codemods
 * https://github.com/ember-codemods/ember-3x-codemods
-### Reset
-```
-git reset --hard
-git clean -f
-```
 
 
 
