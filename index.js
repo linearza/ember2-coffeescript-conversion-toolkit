@@ -34,11 +34,11 @@ const absoluteJsFilePath = `${process.cwd()}/${dirPath}/${baseName}.js`;
 
 const dependencies = [
   {
-    description: "Decaffeinating the file...",
-    name: "decaffeinate",
-    binary: getBinaryFromBin("decaffeinate"),
-    command: absoluteCoffeePath,
-    args: ["--optional-chaining"],
+    description: "Bulk decaffeinating the file...",
+    name: "bulk-decaffeinate",
+    binary: getBinaryFromBin("bulk-decaffeinate"),
+    command: "convert",
+    args: [`-f`, `${absoluteCoffeePath}`, `--config`, `${__dirname}/bulk-decaffeinate.config.js`],
   },
   {
     description: "Converting .property() to computed()...",
@@ -124,7 +124,7 @@ for (let i = 0; i < dependencies.length; i++) {
         dependency.command
       }, args: ${dependency.args.join(" ")}`
     );
-    console.error(result);
+    console.error(result.output[2].toString());
     process.exitCode = 1;
     break;
   }

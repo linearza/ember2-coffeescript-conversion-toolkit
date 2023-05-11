@@ -23,10 +23,11 @@
   },
   "homepage": "https://github.com/linearza/ember2-coffeescript-conversion-toolkit#readme",
   "dependencies": {
+    "bulk-decaffeinate": "^3.3.1",
     "decaffeinate": "^8.1.4",
     "ember-3x-codemods": "^1.12.7",
     "ember-computed-getter-codemod": "^1.4.0",
-    "ember-modules-codemod": "^0.3.1",
+    "ember-modules-codemod": "github:linearza/ember-modules-codemod#master",
     "ember-v2-codemods": "^0.6.1"
   }
 }
