@@ -1,5 +1,5 @@
 exports.command = 'reset'
-exports.describe = 'Reverts unstaged changes and decaffeinate commits. Careful!'
+exports.describe = 'Caution: Reverts unstaged changes and decaffeinate commits.'
 exports.builder = {}
 
 const { spawnSync } = require('child_process');
