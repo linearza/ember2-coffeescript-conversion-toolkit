@@ -1,4 +1,3 @@
-const { resolve } = require("path")
 const path = require("path");
 
 module.exports.getFilePaths = function(args) {
@@ -7,8 +6,8 @@ module.exports.getFilePaths = function(args) {
   const extName = path.extname(filePath);
   const baseName = path.basename(filePath, extName);
 
-  const absoluteCoffeePath = resolve(`${dirPath}/${baseName}.coffee`);
-  const absoluteJsFilePath = resolve(`${dirPath}/${baseName}.js`);
+  const absoluteCoffeePath = `${process.cwd()}/${filePath}`;
+  const absoluteJsFilePath = `${process.cwd()}/${dirPath}/${baseName}.js`;
 
   return {
     absCsPath: absoluteCoffeePath,

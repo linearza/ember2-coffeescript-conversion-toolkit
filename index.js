@@ -41,9 +41,3 @@ const argv = yargs(hideBin(process.argv))
   .command(require('./commands/reset.js'))
   .help()
   .parse()
-
-// console.log(argv.lint); // true if --reset flag was provided, false otherwise
-// console.log(argv.update); // true if --update flag was provided, false otherwise
-// console.log(argv.file); // the path to the file to update
-
-return

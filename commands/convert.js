@@ -9,10 +9,8 @@ function getBinaryFromBin(name) {
 }
 
 module.exports = function(args) {
-  console.log('convert script', args)
-
   const { absCsPath, absJsPath } = getFilePaths(args)
-
+  
   const dependencies = [
     {
       description: "Bulk decaffeinating the file...",
