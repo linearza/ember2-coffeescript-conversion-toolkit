@@ -25,13 +25,6 @@ module.exports = function (args) {
         binary: "npx",
         command: `eslint`,
         args: [`${absJsPath}`, "--fix",],
-      },
-      {
-        description: "Fixing possible issues... Pass 3",
-        name: "eslint",
-        binary: "npx",
-        command: `eslint`,
-        args: [`${absJsPath}`, "--fix",],
       }
     ]
 
