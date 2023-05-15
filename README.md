@@ -22,6 +22,8 @@ Commands:
   e2cct update                             Update e2cct to the latest version
   e2cct reset                              Caution: Reverts unstaged changes and
                                            decaffeinate commits.
+  e2cct clean                              Remove the .original.coffee artifact
+                                           files
 
 Options:
       --help     Show help                                             [boolean]
@@ -45,7 +47,7 @@ Linting can be done as part of the conversion process if passing in the optional
 Alternatively is done separately as final step. 
 Rules are inherited from the project.
 
-NOTE: With bigger files you might have to run the linting more than once, we automatically do 3 passes for convenience. In case you still see the message indicating potentially fixable issues with the '--fix' option after the conversion, you can manually run linting again using `e2cct lint`
+NOTE: With bigger files you might have to run the linting more than once, we automatically do 2 passes for convenience. In case you still see the message indicating potentially fixable issues with the '--fix' option after the conversion, you can manually run linting again using `e2cct lint`
 
 #### Eslint and Prettier rules
 This toolkit makes the assumption that your project already aligns the prettier and eslint rules. If not, the automated fixing might result in a half-baked solution which potentially does not match your existing linting checks.

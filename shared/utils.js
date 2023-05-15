@@ -1,4 +1,5 @@
 const path = require("path");
+const root = `${__dirname}/..`
 
 module.exports.getFilePaths = function(args) {
   const filePath = args.file
@@ -13,4 +14,8 @@ module.exports.getFilePaths = function(args) {
     absCsPath: absoluteCoffeePath,
     absJsPath: absoluteJsFilePath
   }
+}
+
+module.exports.getBinaryFromBin = function(name) {
+  return path.join(root, "/node_modules", ".bin", name);
 }

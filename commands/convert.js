@@ -1,12 +1,7 @@
 
 const { spawnSync } = require('child_process');
-const path = require("path");
 const root = `${__dirname}/..`
-const { getFilePaths } = require('../shared/utils')
-
-function getBinaryFromBin(name) {
-  return path.join(root, "/node_modules", ".bin", name);
-}
+const { getFilePaths, getBinaryFromBin } = require('../shared/utils')
 
 module.exports = function(args) {
   const { absCsPath, absJsPath } = getFilePaths(args)

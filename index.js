@@ -13,6 +13,9 @@ const argv = yargs(hideBin(process.argv))
       }).option('lint', {
         alias: 'l',
         describe: 'Lint file post convert'
+      }).option('clean', {
+        alias: 'c',
+        describe: 'Remove .original.coffee files post convert'
       })
     return yargs
   }, (argv) => {
@@ -41,5 +44,6 @@ const argv = yargs(hideBin(process.argv))
   })
   .command(require('./commands/update.js'))
   .command(require('./commands/reset.js'))
+  .command(require('./commands/clean.js'))
   .help()
   .parse()
