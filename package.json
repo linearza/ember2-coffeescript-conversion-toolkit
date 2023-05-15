@@ -1,6 +1,6 @@
 {
   "name": "ember2-coffeescript-conversion-toolkit",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "ember2-coffeescript-conversion-toolkit - Tooling to assist in Ember upgrades, including coffeescript conversions",
   "main": "index.js",
   "preferGlobal": true,
