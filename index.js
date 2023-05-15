@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
+const pkg = require('./package.json')
 
 const argv = yargs(hideBin(process.argv))
-  .command('convert [file]', 'Decaffeinate and codemod a file', (yargs) => {
+  .version(pkg.version)
+  .alias('v', 'version')
+  .command('convert [file] [optional: --lint]', 'Decaffeinate and codemod a file', (yargs) => {
     yargs.positional('file', {
         describe: 'file to convert',
         default: null
-      })
-    yargs.option('lint', {
+      }).option('lint', {
         alias: 'l',
         describe: 'Lint file post convert'
       })
