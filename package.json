@@ -1,6 +1,6 @@
 {
   "name": "ember2-coffeescript-conversion-toolkit",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "ember2-coffeescript-conversion-toolkit - Tooling to assist in Ember upgrades, including coffeescript conversions",
   "main": "index.js",
   "preferGlobal": true,
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/linearza/ember2-coffeescript-conversion-toolkit#readme",
   "dependencies": {
-    "await-exec": "^0.1.2",
     "bulk-decaffeinate": "^3.3.1",
     "decaffeinate": "^8.1.4",
     "ember-3x-codemods": "^1.12.7",
@@ -29,7 +28,6 @@
     "ember-modules-codemod": "github:linearza/ember-modules-codemod#master",
     "ember-v2-codemods": "^0.6.1",
     "eslint": "^8.40.0",
-    "sync-task-queue": "^1.0.4",
     "yargs": "^17.7.2"
   }
 }
