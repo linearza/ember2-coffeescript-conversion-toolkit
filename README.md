@@ -52,6 +52,13 @@ NOTE: With bigger files you might have to run the linting more than once, we aut
 #### Eslint and Prettier rules
 This toolkit makes the assumption that your project already aligns the prettier and eslint rules. If not, the automated fixing might result in a half-baked solution which potentially does not match your existing linting checks.
 
+### Git history
+Worth noting is that `bulk-decaffeinate` specifically aims to retain git history on files converted through it, nevertheless, if you squash the commits upon merging, instead of creating a merge commit you will lose some ability to navigate the history as per normal on providers like Github. That being said, the history is always traceable via the original commit which references the old `.coffee` file. Additionally you can use the following command to log the full file history:
+
+```
+git log --oneline --follow --all -- path/to/my/converted/file.js
+```
+
 ### Manual workflow
 Once you have run the automated conversion, there are some manual steps required:
 1. Merge any imports depending on the same declarations if required
