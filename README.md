@@ -17,7 +17,7 @@ npm install ember2-coffeescript-conversion-toolkit -g
 e2cct [command]
 
 Commands:
-  e2cct convert [file] [optional: --lint]  Decaffeinate and codemod a file
+  e2cct convert [file] [optional: --nolint, --clean]  Decaffeinate, codemod and lint a file
   e2cct lint [file]                        Lint and fix possible issues
   e2cct update                             Update e2cct to the latest version
   e2cct reset                              Caution: Reverts unstaged changes and
@@ -41,10 +41,11 @@ Options:
 7. legacy-getProperties-codemod: Converting this.getProperties to getProperties(this...
 8. ember-modules-codemod: Converting Ember.Component.extend({ to Component.extend({...
 9. ember-computed-getter-codemod: Converting computed(function() to computed({get()...
+10. eslint: Fixing possible issues... Pass 1
+11. eslint: Fixing possible issues... Pass 2
 
 ### Linting
-Linting can be done as part of the conversion process if passing in the optional `--lint` or `-l` alias with the convert command, eg `e2cct path/to/file.coffee --lint`.
-Alternatively is done separately as final step. 
+Linting is done by default as part of the conversion process, if you would like to not lint you can pass in the optional `--nolint` flag, eg `e2cct path/to/file.coffee --nolint`.
 Rules are inherited from the project.
 
 NOTE: With bigger files you might have to run the linting more than once, we automatically do 2 passes for convenience. In case you still see the message indicating potentially fixable issues with the '--fix' option after the conversion, you can manually run linting again using `e2cct lint`

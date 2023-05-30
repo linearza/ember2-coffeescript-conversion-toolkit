@@ -6,13 +6,12 @@ const pkg = require('./package.json')
 const argv = yargs(hideBin(process.argv))
   .version(pkg.version)
   .alias('v', 'version')
-  .command('convert [file] [optional: --lint]', 'Decaffeinate and codemod a file', (yargs) => {
+  .command('convert [file] [optionals: --nolint, --clean]', 'Decaffeinate, codemod and lint a file', (yargs) => {
     yargs.positional('file', {
         describe: 'file to convert',
         default: null
-      }).option('lint', {
-        alias: 'l',
-        describe: 'Lint file post convert'
+      }).option('nolint', {
+        describe: 'Dont lint file post convert'
       }).option('clean', {
         alias: 'c',
         describe: 'Remove .original.coffee files post convert'

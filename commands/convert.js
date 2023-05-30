@@ -95,7 +95,7 @@ module.exports = function(args) {
     }
   }
 
-  if (args.lint){
+  if (!args.nolint){
     const lint = require('./lint')
     return lint(args)
   }
